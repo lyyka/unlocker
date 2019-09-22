@@ -2,9 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d67a9b50-adfa-45b0-adc6-2e68c1199bca" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/unlocker/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/unlocker/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/unlocker/test.docx" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/unlocker/unlocker.py" beforeDir="false" afterPath="$PROJECT_DIR$/unlocker/unlocker.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />

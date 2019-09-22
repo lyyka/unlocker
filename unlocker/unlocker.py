@@ -134,4 +134,10 @@ def main():
         # prompt to delete the file
         prompt = input("Would you like to delete this file? [Y / N]: ")
         if prompt.lower() == "y" or prompt.lower() == "yes":
-            os.remove(selected_file_path)
+            try:
+                os.remove(selected_file_path)
+                print("File deleted successfully")
+            except BaseException as e:
+                print("Error occurred while attempting to delete the file")
+
+main()
