@@ -1,14 +1,67 @@
 import os
 import argparse
-import psutil
+import psutil, datetime
 
 
 # prints the list of active processes on a file
 def print_processes(active_processes):
-    print("PID | Name")
+    # initiate empty max_lens object
+    max_lens = {}
+
+    # go through each dict in list and find max lengths
+    max_lens_sum = 0
+    for dict in active_processes:
+        # go through each key for each dict
+        for key in dict:
+            # if the key was not initialized before, set it to 0
+            if key not in max_lens:
+                max_lens[key] = 0
+            # decrease max sum by the current key
+            max_lens_sum -= max_lens[key]
+            # check if max value should be overwritten
+            if len(str(dict[key])) > max_lens[key]:
+                # overwrite current max value for a given key
+                max_lens[key] = len(str(dict[key]))
+            # increase max sum by the current key
+            # (if changed, will apply new max for that key, if not, will return to same value)
+            max_lens_sum += max_lens[key]
+
+    # print opening table line based on sample dict
+    opening_header_line = "+"
+    for key in active_processes[0]:
+        opening_header_line += ((max_lens[key] + 2) * "-" + "+")
+    print(opening_header_line)
+
+    # print headers based on sample dict
+    headers = "|"
+    for key in active_processes[0]:
+        headers = headers + (" {0}" + (max_lens[key] - len(str(key)) + 1) * " " + "|").format(key)
+    print(headers)
+    # print("| PID" + (max_lens["pid"]-2)*" " + "| Name" + (max_lens["name"] - 3)*" " + "|")
+
+    # print table header row break
+    header_row_break = "+"
+    for key in active_processes[0]:
+        header_row_break += ((max_lens[key]+2)*"=" + "+")
+    print(header_row_break)
+
+    # print processes
     for active_proc in active_processes:
-        print("{0} | {1}".format(active_proc["pid"], active_proc["name"]))
-    print("------------")
+        # initialize the row
+        row = "|"
+
+        # create cells for each key
+        for key in active_proc:
+            value = active_proc[key]
+            row = row + (" {0}" + (max_lens[key]-len(str(active_proc[key]))+1)*" " + "|").format(value)
+
+        # print row
+        print(row)
+
+        # print row break
+        print((max_lens_sum + len(active_proc.keys()) * 3 + 1) * "-")
+
+    # print total number of processes
     print("Total: {0}".format(len(active_processes)))
 
 
@@ -57,7 +110,8 @@ def main():
                                 # add process to the list
                                 active_processes.append({
                                     "pid": process.pid,
-                                    "name": process.name()
+                                    "name": process.name(),
+                                    "create_time": datetime.datetime.fromtimestamp(process.create_time()).strftime("%Y-%m-%d %H:%M:%S")
                                 })
             except psutil.Error as err:
                 continue
