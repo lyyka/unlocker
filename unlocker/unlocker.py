@@ -68,7 +68,10 @@ def print_processes(active_processes):
 # kills all active processes
 def kill_processes(active_processes):
     for process in active_processes:
-        (psutil.Process(process["pid"])).kill()
+        try:
+            (psutil.Process(process["pid"])).kill()
+        except BaseException as e:
+            print("Could not kill {0}".format(process["name"]))
 
 
 def main():
