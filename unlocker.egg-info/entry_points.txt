@@ -1,3 +1,0 @@
-[console_scripts]
-unlocker = unlocker.unlocker:main
-
