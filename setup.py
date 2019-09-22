@@ -2,7 +2,7 @@ import setuptools
 
 setuptools.setup(
     name='unlocker',
-    version='1.1',
+    version='1.2',
     author='Luka Robajac',
     author_email='luka.robajac@gmail.com',
     description='Breaks all locks on a file',

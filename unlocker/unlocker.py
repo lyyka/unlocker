@@ -1,6 +1,7 @@
 import os
 import argparse
-import psutil, datetime
+import psutil
+import datetime
 
 
 # prints the list of active processes on a file
@@ -26,23 +27,22 @@ def print_processes(active_processes):
             # (if changed, will apply new max for that key, if not, will return to same value)
             max_lens_sum += max_lens[key]
 
-    # print opening table line based on sample dict
+    # construct opening header line
+    # construct headers based on dict keys
+    # construct break after headers row
     opening_header_line = "+"
-    for key in active_processes[0]:
-        opening_header_line += ((max_lens[key] + 2) * "-" + "+")
-    print(opening_header_line)
-
-    # print headers based on sample dict
     headers = "|"
-    for key in active_processes[0]:
-        headers = headers + (" {0}" + (max_lens[key] - len(str(key)) + 1) * " " + "|").format(key)
-    print(headers)
-    # print("| PID" + (max_lens["pid"]-2)*" " + "| Name" + (max_lens["name"] - 3)*" " + "|")
-
-    # print table header row break
     header_row_break = "+"
     for key in active_processes[0]:
-        header_row_break += ((max_lens[key]+2)*"=" + "+")
+        opening_header_line += ((max_lens[key] + 2) * "-" + "+")
+        headers = headers + (" {0}" + (max_lens[key] - len(str(key)) + 1) * " " + "|").format(key)
+        header_row_break += ((max_lens[key] + 2) * "=" + "+")
+
+    # print opening header line
+    print(opening_header_line)
+    # print headers based on dict keys
+    print(headers)
+    # print break after headers row
     print(header_row_break)
 
     # print processes
