@@ -109,7 +109,7 @@ def main():
                         # loops through the list of files used by the current process
                         for file in processes_files:
                             # check if the process has file opened that is actually our file
-                            if file.path == selected_file_path:
+                            if file.path.upper() == selected_file_path.upper():
                                 # add process to the list
                                 active_processes.append({
                                     "pid": process.pid,
