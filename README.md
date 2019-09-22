@@ -6,8 +6,9 @@ In order to be able to run this app from the command prompt, you first need to i
 
 ## How to install?
 When you have successfully installed python, go to this project root directory where **setup.py** is located. Open command prompt as an administrator and run the following commands **in order**:
-    pip install psutil
-    python setup.py install
+> pip install psutil
+> 
+> python setup.py install
 
 After the successful installation, the **unlocker** command will be available anywhere in Windows!
 
