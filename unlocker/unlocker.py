@@ -139,5 +139,3 @@ def main():
                 print("File deleted successfully")
             except BaseException as e:
                 print("Error occurred while attempting to delete the file")
-
-main()
